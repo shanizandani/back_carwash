@@ -27,6 +27,7 @@ urlpatterns = [
     path('api/', include('base.api.urls')),
     path('paypal/', include('paypal.standard.ipn.urls')),
     # path('', include('base.api.urls')), 
+    path('', views.hello_world, name='hello_world'),
      
 ]
 if settings.DEBUG:
