@@ -42,6 +42,9 @@ from django.contrib.auth.decorators import login_required
 # from django.shortcuts import render
 # from .paypal import generate_client_token, create_order, capture_payment
 
+def hello_world(request):
+    return HttpResponse("HELLO WORLD")
+
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
