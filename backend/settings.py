@@ -42,7 +42,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
 
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'fb10-5-28-176-19.ngrok-free.app','project_carwash.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'fb10-5-28-176-19.ngrok-free.app','project-carwash.onrender.com']
 
 
 
