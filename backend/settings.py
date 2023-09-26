@@ -18,6 +18,8 @@ from pathlib import Path
 from datetime import timedelta
 import pymysql
 pymysql.install_as_MySQLdb()
+import dj_database_url
+
 
 
 from dotenv import load_dotenv
@@ -205,16 +207,28 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # }
 
 # # -------------------------------------------------------------
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'project_2',
+#         'USER': 'root',
+#         'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+#         'HOST': 'localhost',
+#         'PORT': '3306'
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'project_2',
-        'USER': 'root',
-        'PASSWORD': os.getenv("DATABASE_PASSWORD"),
-        'HOST': 'localhost',
-        'PORT': '3306'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
     }
 }
+
+
+DATABASES["default"]= dj_database_url.parse("postgres://shani:ZCEu7TEQyPLXe9KUkWBMSUjmCze166ja@dpg-ck9ge770vg2c738ssi9g-a.oregon-postgres.render.com/car_wash_wl6v")
+
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
