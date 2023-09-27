@@ -1,4 +1,4 @@
-# from django.urls import path
+# from django.urls import path, re_path
 # from . import views
 # from .views import MyTokenObtainPairView
 
@@ -19,7 +19,7 @@
 
 
 
-from django.urls import path, include
+from django.urls import path, include, re_path
 from . import views
 from.views import MyTokenObtainPairView, ProcessWebhookView
 from rest_framework_simplejwt.views import (
