@@ -16,10 +16,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 from datetime import timedelta
-import pymysql
-pymysql.install_as_MySQLdb()
+# import pymysql
+# pymysql.install_as_MySQLdb()
 import dj_database_url
-
 
 
 from dotenv import load_dotenv
@@ -38,13 +37,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = "django-insecure-t*wzc7!5=0f6iu-hdm_3vm_gwtm+$vo(v*)=#yu_@zk)=p+rlp"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'fb10-5-28-176-19.ngrok-free.app','project-carwash.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1' , 'project-carwash.onrender.com', '87e4-5-28-177-153.ngrok-free.app']
+
+
 
 
 
@@ -197,12 +198,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': os.environ.get('DB_NAME'),
-#         'USER': os.environ.get('DB_USER'),
-#         'PASSWORD': os.environ.get('DB_PASS'),
-#         'HOST': '127.0.0.1',
-#         'PORT': '3306'
+#             'ENGINE': 'django.db.backends.mysql',
+#             'HOST': os.getenv("DB_HOST"),
+#             'USER': os.getenv("DB_USERNAME"),
+#             'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+#             'NAME': os.getenv("DB_DBNAME"),
+#             'PORT': '',
 #     }
 # }
 
@@ -219,6 +220,36 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # }
 
 
+
+# import pymysql  # noqa: 402
+# pymysql.install_as_MySQLdb()
+# if os.getenv('GAE_APPLICATION', None):
+#     # Running on production App Engine, so connect to Google Cloud SQL using
+#     # the unix socket at /cloudsql/
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'HOST': os.getenv("DB_HOST"),
+#             'USER': os.getenv("DB_USERNAME"),
+#             'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+#             'NAME': os.getenv("DB_DBNAME"),
+#             'PORT': '',
+
+#         }
+#     }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'HOST': 'localhost',
+#             'PORT': '3306',
+#             'USER': 'root',
+#             'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+#             'NAME':'project_2',
+#         }
+#     }
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -230,12 +261,12 @@ DATABASES = {
 DATABASES["default"]= dj_database_url.parse("postgres://shani:ZCEu7TEQyPLXe9KUkWBMSUjmCze166ja@dpg-ck9ge770vg2c738ssi9g-a.oregon-postgres.render.com/car_wash_wl6v")
 
 
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'shanilevi88761234@gmail.com'
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+# EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_PASSWORD = 'dnlxtvjnnwduywpi'
 EMAIL_USE_TLS = True
 
 
@@ -299,11 +330,21 @@ CORS_ALLOW_ALL_ORIGINS = True
 # "http://127.0.0.1:3000",
 # ]
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-PAYPAL_CLIENT_ID = os.getenv("PAYPAL_CLIENT_ID")
-PAYPAL_CLIENT_SECRET = os.getenv("PAYPAL_CLIENT_SECRET")
-PAYPAL_WEBHOOK_ID = os.getenv("PAYPAL_WEBHOOK_ID")
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
+
+# PAYPAL_CLIENT_ID = os.getenv("PAYPAL_CLIENT_ID")
+# PAYPAL_CLIENT_SECRET = os.getenv("PAYPAL_CLIENT_SECRET")
+# PAYPAL_WEBHOOK_ID = os.getenv("PAYPAL_WEBHOOK_ID")
+
+
+
+PAYPAL_CLIENT_ID = "AfbUGtEZE9rX77TgWCDqKGON5e5BuEiPxc5DEudSA88h-_7erNXkaEMruhvbOZtLiV6e1wRmCsr4ENIs"
+PAYPAL_CLIENT_SECRET = "EBCRofzTNfD0jZugzAaVbD17Iq-TClCQfT1D9WqxWidTP8YKOUdlV13m1WfTTa0mkJpQOeWPHzi1DT5a"
+PAYPAL_WEBHOOK_ID = "46N82677VJ8600301"
 
 PAYPAL_TEST = True
 PAYPAL_RECIVER_EMAIL = 'sb-7jvd4726700262@business.example.com'
