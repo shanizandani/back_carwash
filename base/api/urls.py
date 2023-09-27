@@ -75,6 +75,7 @@ urlpatterns = [
     #  path('', views.home , name='home'),
     #  path("paypal-return/", views.paypal_return, name='paypal-return'),
     #  path("paypal-cancel", views.paypal_cancel, name="paypal-cancel"),
+    re_path(r'^media/(?P<path>.*)$', static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)),
 
 
     #   path('notes/', views.getNotes),
