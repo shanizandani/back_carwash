@@ -19,7 +19,7 @@
 
 
 
-from django.urls import path, include
+from django.urls import path, include, re_path
 from . import views
 from.views import MyTokenObtainPairView, ProcessWebhookView
 from rest_framework_simplejwt.views import (
@@ -30,7 +30,7 @@ from rest_framework_simplejwt.views import (
 from .views import  UserOrdersAPIView
 from django.conf.urls.static import static
 from django.conf import settings
-
+from django.views.static import serve
 
 
 
@@ -62,7 +62,9 @@ urlpatterns = [
     path('orders/<int:order_id>/', views.create_or_update_order, name='get_order_by_id'),
 
     path('orders/user/<int:user_id>/', views.getOrders, name='get_orders'),
-
+    re_path(r'^media/(?P<path>.*)$', serve, {
+        'document_root': settings.MEDIA_ROOT,
+    }),
     # path('users/', views.get_all_users, name='get_all_users'),
     #  path('users/<int:user_id>/', views.get_user_by_id, name='get_user_by_id'), 
      path('orders/user/', UserOrdersAPIView.as_view(), name='user-orders'),
@@ -89,7 +91,7 @@ urlpatterns = [
         name="request-password-reset",
     ),
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

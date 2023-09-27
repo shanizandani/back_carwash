@@ -43,6 +43,12 @@ from django.contrib.auth.decorators import login_required
 # from .paypal import generate_client_token, create_order, capture_payment
 
 
+
+
+
+def hello_world(request):
+    return HttpResponse("HELLO WORLD")
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
@@ -280,18 +286,9 @@ class ProcessWebhookView(View):
 
             customer_email = webhook_event["resource"]["payer"]["email_address"]
              
-            # Extract item details
-            purchased_items = webhook_event["resource"]["purchase_units"][0].get("items", [])
-            
-            # Debugging print to display the entire purchased_items list
             product_name = webhook_event["resource"]["purchase_units"][0].get("description", "")
 
-    # Debugging print to display the entire purchased_items list
-            print("Purchased Items:")
-            for item in purchased_items:
-               print(item)
-
-            # Extract customer name if available
+    
             customer_name = webhook_event["resource"]["payer"]["name"].get("given_name", "")
 
             # Extract the total payment amount
@@ -326,7 +323,20 @@ class ProcessWebhookView(View):
             )
 
         return HttpResponse()   
-    
+
+
+
+               # Extract item details
+            # purchased_items = webhook_event["resource"]["purchase_units"][0].get("items", [])
+            
+            # Debugging print to display the entire purchased_items list 
+
+            # Debugging print to display the entire purchased_items list
+            # print("Purchased Items:")
+            # for item in purchased_items:
+            #    print(item)
+
+            # Extract customer name if available
 
 
 # import json

@@ -4,8 +4,10 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+
 def upload_path(instance, filename):
     return '/'.join(['covers', str(instance.name), filename])
+
 
 
 class Product(models.Model):
