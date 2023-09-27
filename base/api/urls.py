@@ -30,6 +30,7 @@ from rest_framework_simplejwt.views import (
 from .views import  UserOrdersAPIView
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.static import serve
 
 
 
@@ -75,7 +76,9 @@ urlpatterns = [
     #  path('', views.home , name='home'),
     #  path("paypal-return/", views.paypal_return, name='paypal-return'),
     #  path("paypal-cancel", views.paypal_cancel, name="paypal-cancel"),
-    re_path(r'^media/(?P<path>.*)$', static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)),
+        re_path(r'^media/(?P<path>.*)$', serve, {
+        'document_root': settings.MEDIA_ROOT,
+    }),
 
 
     #   path('notes/', views.getNotes),
