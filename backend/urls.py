@@ -29,6 +29,7 @@ urlpatterns = [
 
     path('', views.hello_world, name='hello_world'),
     # path('', include('base.api.urls')), 
+    path('', views.hello_world, name='hello_world'),
      
 ]
 if settings.DEBUG:
